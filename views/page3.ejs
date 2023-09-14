@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div>
+    <h1>Page 3</h1>
+
+    <p>Please enter names of borrower, lender and amount as per transaction</p>
+
+    <form action="/page4" method="post">
+        <% for(let i=0;i < num2;i++){ %>
+            <input type="hidden" name="num1" value="<%= num1 %>">
+            <input type="hidden" name="num2" value="<%= num2 %>">
+            <input type="text" name="borrower<%= i %>" id="borrower<%= i %>" placeholder="borrower<%= i %>" required=="true">
+            <input type="text" name="lender<%= i %>" id="lender<%= i %>" placeholder="lender<%= i %>" required="true">
+            <input type="text" name="amount<%= i %>" id="amount<%= i %>" placeholder="Amount<%= i %>" required="true"><br>
+        <% } %>
+        <button type="submit">Next</button>
+
+    </form>
+
+    
+
+    
+</div>
+
+
+
+<%- include('partials/footer') %>

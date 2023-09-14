@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+<div>
+    <h1>page2</h1>
+
+    <form action="/page3" method="post">
+        <input type="hidden" name="num1" value="<%= num1 %>">
+        <input type="text" name="num2" placeholder="Number of transactions" required="true">
+        <button type="submit">Next</button>
+    </form>
+</div>
+<%- include('partials/footer') %>
