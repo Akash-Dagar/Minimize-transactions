@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+<%- include('partials/user-info') %>
+    <h1 style="margin-left: 10px;">Result</h1>
+    <div style="margin-top: 100px; margin-left: 100px;">
+    <h2>Optimized Transactions:</h2>
+    <ul>
+        <% let count=0 %>
+        <% for (let i = 0; i < optimizedTransactions.length; i++) { %>
+            <% for (let j = 0; j < optimizedTransactions[i].length; j++) { %>
+                <% if (optimizedTransactions[i][j] !== 0) { %>
+                    <% count++ %>
+                    <li><%= submittedNames[i] %> owes <%= submittedNames[j] %> <%= optimizedTransactions[i][j] %></li>
+                <% } %>
+            <% } %>
+        <% } %>
+        <% if(count==0) { %>
+            <li><h3>You are all settled up</h3></li>
+        <% } %>
+    </ul>
+</div>
+<div style="margin-top: 10px; margin-left: 100px;">
+<form  action="/secrets" method="get">
+    <h5>Have another query? Press the button below</h5>
+    
+    <button type="submit">Next Query</button>
+</form>
+</div>
+
+<%- include('partials/footer') %>

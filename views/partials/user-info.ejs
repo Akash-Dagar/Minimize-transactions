@@ -1,0 +1,17 @@
+<!-- views/partials/navigation.ejs -->
+
+<div class="navbar">
+    <div class="user-info">
+        <% if (user) { %>
+            
+            <!-- <a href="/logout" class="logout-button">Logout</a> -->
+            
+            <form action="/logout" method="GET">
+              <img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="Logo" class="logo">
+              <span style="margin-right: 10px;"> <%= user.name %></span>
+              <button type="submit">Logout</button>
+          </form>
+          
+        <% } %>
+    </div>
+  </div>

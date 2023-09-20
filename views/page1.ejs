@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<%- include('partials/user-info') %>
+  <div style="margin-top: 10px; margin-left:10px">
+    <h1>page1</h1>
+    <p>Enter the names of <%= num1 %> persons</p>
+
+    <form action="/page2" method="post">
+        <input type="hidden" name="num1" value="<%= num1 %>">
+        <% for (let i = 0; i < num1; i++) { %>
+            <label for="name<%= i %>">Person <%= i + 1 %>:</label>
+            <input type="text" name="name<%= i %>" id="name<%= i %>" required="true" ><br>
+        <% } %>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

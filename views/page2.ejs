@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+
+<%- include('partials/user-info') %>
+  <div style="margin-top: 10px; margin-left:10px">
+    <h1>page2</h1>
+
+    <form  style="margin-top: 10px;" action="/page3" method="post">
+        <input type="hidden" name="num1" value="<%= num1 %>">
+        <input type="text" name="num2" placeholder="Number of transactions" required="true">
+        <br>
+        <button style="margin-top: 10px;" type="submit">Next</button>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

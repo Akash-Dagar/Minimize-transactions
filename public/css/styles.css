@@ -1,0 +1,61 @@
+
+body {
+  background-color: #E8ECEF;
+  
+}
+footer {
+  text-align: center;
+  padding: 10px; /* Add padding for spacing */
+  border-top: 1px solid #ccc; /* Add a 1px solid gray border above the footer */
+}
+.page-container {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fixed-footer {
+  background-color: #333; /* Set your desired background color */
+  color: white; /* Set your desired text color */
+  text-align: center;
+  padding: 10px; /* Adjust padding as needed */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.centered {
+    padding-top: 100px;
+    text-align: center;
+}
+.rounded-image {
+    border-radius: 10px; 
+    margin-top: -30px;
+
+  }
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+.logo {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Maintain aspect ratio */
+}
+
+/* Position the user info div in the right upper corner */
+.user-info {
+  position: absolute;
+  top: 10px; /* Adjust the top value to set the vertical position */
+  right: 10px; /* Adjust the right value to set the horizontal position */
+}
+.custom-footer {
+  /* Grey background color */
+  color: white; /* Text color */
+  /* padding: 20px; Adjust padding as needed */
+}
+.custom-container {
+  margin: 0;
+  padding: 0;
+}
