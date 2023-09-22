@@ -10,6 +10,7 @@ const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy; 
 const findOrCreate = require('mongoose-findorcreate');
+
 //some of the above are taken from their respective websites
 
 
@@ -75,8 +76,11 @@ passport.use(new GoogleStrategy({
 
 },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    // console.log(profile);
+    const userGivenName = profile.name.givenName;
+    
+    
+    User.findOrCreate({ googleId: profile.id },userGivenName, function (err, user) {
       return cb(err, user);
     });
   }
@@ -102,14 +106,33 @@ app.get("/login",function(req,res){
 app.get("/register",function(req,res){
     res.render("register");
 });
-app.get("/secrets",function(req,res){
-    if(req.isAuthenticated()){
-        res.render("secrets",{ user: req.user });
+app.get("/secrets", function(req, res) {
+    let userDisplayName = ''; // Initialize the display name variable
+
+    if (req.isAuthenticated()) {
+        if (req.user.googleId) {
+            // If the user is logged in with Google, use their givenName
+            userDisplayName = req.user.givenName || ''; // Use givenName if available, otherwise an empty string
+        } else {
+            // If the user is not logged in with Google, use their manually entered name
+            userDisplayName = req.user.name || ''; // Use name if available, otherwise an empty string
+        }
+
+        // Render the view with userDisplayName
+        console.log(req.user);
+        res.render("secrets", { user: req.user, userDisplayName: userDisplayName });
     }
     else{
         res.redirect("/login");
     }
 });
+//In this modified code, userDisplayName is declared at the beginning of the route function, and then it's assigned the appropriate value based on the authentication method used. This ensures that userDisplayName is available within the scope of the /secrets route, and it will be correctly passed to the view.
+
+
+
+
+
+
 app.get("/logout", function(req, res) {
     req.logout(function(err) {
         if (err) {
@@ -125,7 +148,7 @@ app.post("/register", function(req, res) {
     const newUser = new User({
         name: req.body.name, // Get the 'name' from the form
         username: req.body.username,
-        password: req.body.password
+        
     });
 
     User.register(newUser, req.body.password, function(err, user) {
